@@ -1,4 +1,4 @@
-from controls import *
+from init import *
 
 
 class Log:
@@ -18,7 +18,7 @@ class Log:
 
     @staticmethod
     def ctrl():
-        print(Control.getControlHelp())
+        print(G.getControlHelp())
 
     @staticmethod
     def ou(s):

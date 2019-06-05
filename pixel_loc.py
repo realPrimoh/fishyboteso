@@ -3,7 +3,7 @@ from fishing_event import *
 
 def GetKeypointFromImage(img):
     # Setup SimpleBlobDetector parameters.
-    hsvImg = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
+    hsvImg = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     lower = (99, 254, 100)
     upper = (100, 255, 101)
     mask = cv2.inRange(hsvImg, lower, upper)

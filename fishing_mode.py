@@ -1,4 +1,4 @@
-from window import *
+from fishy_move import *
 
 
 class FishingMode:
@@ -28,8 +28,10 @@ class FishingMode:
 
 
     @staticmethod
-    def Loop(hueValue, pause):
+    def Loop(fishPixWindow):
         current_label = 3
+        hueValue = fishPixWindow.getCapture()[0][0][0]
+
         for i, val in enumerate(FishingMode.HValues):
             if hueValue == val:
                 current_label = i
@@ -44,7 +46,7 @@ class FishingMode:
         if FishingMode.CurrentCount >= FishingMode.Threshold:
             FishingMode.CurrentMode = FishingMode.GetByLabel(current_label)
 
-        if not pause and FishingMode.CurrentMode != FishingMode.PrevMode and FishingMode.PrevMode is not None:
+        if not G.pause and FishingMode.CurrentMode != FishingMode.PrevMode and FishingMode.PrevMode is not None:
 
             if FishingMode.PrevMode.event is not None:
                 FishingMode.PrevMode.event.onExitCallback(FishingMode.CurrentMode)

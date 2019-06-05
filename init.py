@@ -32,6 +32,7 @@ try:
     import pyautogui
     import time
     import fishy_network as net
+    import pynput
     from pynput.keyboard import Key, Listener
     from decimal import Decimal
     from win32api import GetSystemMetrics
@@ -43,6 +44,9 @@ try:
     import sys
     import numpy as np
     import math
+    import pytesseract
+    import arrowsAsMouse as arrow
+    from threading import Thread
 except Exception:
     raise
 
@@ -50,12 +54,15 @@ except Exception:
 import stack
 
 fishy
+loop
+controls
+controls_controller
 pixel_loc
 fishing_event
 fishing_mode
+fishy_move
 window
 log
-controls
 init
 '''
 
@@ -69,6 +76,10 @@ class G:
     stop = False
     pause = True
     debug = False
+
+    @staticmethod
+    def getControlHelp():
+        assert False
 
 
 """Helper functions"""
@@ -86,5 +97,13 @@ def draw_keypoints(vis, keypoints, color=(0, 0, 255)):
     for kp in keypoints:
         x, y = kp.pt
         cv2.circle(vis, (int(x), int(y)), 5, color, -1)
+
+
+def bgr2rbg(img):
+    return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+
+def bgr2hsv(img):
+    return cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 
 # np.set_printoptions(threshold=sys.maxsize)

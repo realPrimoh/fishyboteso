@@ -26,6 +26,7 @@ class HookEvent(FishEvent):
 class LookEvent(FishEvent):
 
     def onEnterCallback(self, previousMode):
+        Record.HaltExe()
         pyautogui.press('e')
 
     def onExitCallback(self, currentMode):
@@ -38,7 +39,6 @@ class IdleEvent(FishEvent):
         self.use_net = use_net
 
     def onEnterCallback(self, previousMode):
-        G.fishCaught = 0
         if self.use_net:
             net.sendHoleDeplete(G.fishCaught)
 
@@ -46,6 +46,9 @@ class IdleEvent(FishEvent):
             print("HOLE DEPLETED")
         elif previousMode.name == "stick":
             print("FISHING INTERRUPTED")
+
+        G.fishCaught = 0
+        Record.UnHaltExe()
 
     def onExitCallback(self, currentMode):
         pass
