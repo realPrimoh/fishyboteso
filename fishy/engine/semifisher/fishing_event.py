@@ -6,6 +6,7 @@ also implements callbacks which is called when states are changed
 import logging
 import time
 from abc import abstractmethod, ABC
+import random
 
 import pyautogui
 
@@ -50,6 +51,9 @@ class HookEvent(FishEvent):
         _fish_times.append(time_to_hook)
         logging.info("HOOOOOOOOOOOOOOOOOOOOOOOK....... " + str(_fishCaught) + " caught " + "in " + str(
             round(time_to_hook, 2)) + " secs.  " + "Total: " + str(_totalFishCaught))
+        random_sleep = random.randrange(0.1, 1.3, 0.05)
+        logging.info("Sleeping for " + str(random_sleep) + " seconds")
+        time.sleep(random_sleep)
         pyautogui.press(self.action_key)
 
         if self.collect_r:
